@@ -34,9 +34,13 @@ namespace TheGoodEditor2.EditorWindows
             this.saveAsPng = new System.Windows.Forms.Button();
             this.grpSavingControls = new System.Windows.Forms.GroupBox();
             this.saveAsJpg = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textureViewerBox)).BeginInit();
             this.grpSavingControls.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -73,6 +77,7 @@ namespace TheGoodEditor2.EditorWindows
             // 
             this.grpSavingControls.Controls.Add(this.saveAsJpg);
             this.grpSavingControls.Controls.Add(this.saveAsPng);
+            this.grpSavingControls.Controls.Add(this.groupBox2);
             this.grpSavingControls.Location = new System.Drawing.Point(671, 21);
             this.grpSavingControls.Name = "grpSavingControls";
             this.grpSavingControls.Size = new System.Drawing.Size(257, 543);
@@ -90,6 +95,37 @@ namespace TheGoodEditor2.EditorWindows
             this.saveAsJpg.UseVisualStyleBackColor = true;
             this.saveAsJpg.Click += new System.EventHandler(this.saveAsJpg_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Location = new System.Drawing.Point(6, 124);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(245, 413);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Basic Editing Controls";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 41);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(233, 29);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Rotate Texture 90° Right";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(6, 76);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(233, 29);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Rotate Texture 90° Left";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // TextureViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -103,6 +139,7 @@ namespace TheGoodEditor2.EditorWindows
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.textureViewerBox)).EndInit();
             this.grpSavingControls.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -114,5 +151,8 @@ namespace TheGoodEditor2.EditorWindows
         private System.Windows.Forms.Button saveAsPng;
         private System.Windows.Forms.GroupBox grpSavingControls;
         private System.Windows.Forms.Button saveAsJpg;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }

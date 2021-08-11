@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="txtAboutAsset.Text" xml:space="preserve">
+    <value>BDE21A8D asset types are ToS and other ho game's textures. They are stored in the *.tpl fomat with 32 bytes of an extra header that is skipped when reading the texture in the Texture Viewer. You can currently open and view these asset types and export them to *.png and *.jpg formats. Note: The texture format on the PS3, Xbox 360, and PC versions of *.ho games is different, and will cause and error to pop up when clicking on them, but they can still be extracted and looked at in the byte viewer though.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

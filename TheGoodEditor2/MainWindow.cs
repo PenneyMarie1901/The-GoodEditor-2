@@ -152,11 +152,25 @@ namespace TheGoodEditor2
 
                                     texturePreviewBox.Image = newbmp;
                                 }
-                                
+                                if (isWhatItem.Contains("GEN_RawBlob"))
+                                {
+                                    x = psl.assets[listBoxAssets.SelectedIndex].data;
+                                    byte[] untrimmed = x;
+                                    byte[] trimmed = untrimmed.Skip(32).ToArray();
+                                    var bmp = TPL.Load(trimmed);
+                                    Bitmap newbmp = new Bitmap(bmp.ExtractTexture());
+
+                                    texturePreviewBox.Image = newbmp;
+                                }
+                                if (chkTurnPreviewOff.Checked)
+                                {
+                                    TurnOfTexurePreviewing();
+                                }
+
                             }
                         }
         }
-            public void exitTheGoodEditor2ToolStripMenuItem_Click(object sender, EventArgs e)
+        public void exitTheGoodEditor2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -816,9 +830,19 @@ namespace TheGoodEditor2
                 WhatIsFloatingCollectible floatWindow = new WhatIsFloatingCollectible();
                 floatWindow.ShowDialog();
             }
+            if (whatIsAsset.Contains("BDE21A8D"))
+            {
+                WhatIsTextureWindow texWindow = new WhatIsTextureWindow();
+                texWindow.ShowDialog();
+            }
+            if (whatIsAsset.Contains("GEN_RawBlob"))
+            {
+                WhatIsGenRawBlob texWindow = new WhatIsGenRawBlob();
+                texWindow.ShowDialog();
+            }
         }
-        
-     
+
+
         private void btnOpenByteViewer_Click(object sender, EventArgs e)
         {
             ulong assetID = GetSelectedAssetID();
@@ -836,10 +860,10 @@ namespace TheGoodEditor2
                         else if (listBoxAssets.SelectedIndex == -1)
                             MessageBox.Show("You have not selected an asset! Please select an asset first!");
             {
-                
+
             }
         }
-        
+
         public void HexBox_CopiedHex(object sender, EventArgs e)
         {
             var hex = Clipboard.GetText();
@@ -864,7 +888,7 @@ namespace TheGoodEditor2
 
                             listBoxAssets_SelectedIndexChanged(sender, e);
                         }
-                           
+
 
         }
 
@@ -875,18 +899,41 @@ namespace TheGoodEditor2
 
         private void button2_Click_2(object sender, EventArgs e)
         {
-                ulong assetID = GetSelectedAssetID();
+            ulong assetID = GetSelectedAssetID();
 
-                if (assetID != 0)
-                    if (listBoxLayers.SelectedIndex > -1 && listBoxLayers.SelectedIndex < hoFile.MAST.sectionSect2.layers.Count)
-                        if (hoFile.MAST.sectionSect2.layers[listBoxLayers.SelectedIndex].subLayer is SubLayer_PSL psl)
-                            if (listBoxAssets.SelectedIndex > -1 && listBoxAssets.SelectedIndex < psl.assets.Count)
-                            {
-                                x = psl.assets[listBoxAssets.SelectedIndex].data;
-                                TextureViewer texView = new TextureViewer();
-                                texView.ShowDialog();
-                            }
+            if (assetID != 0)
+                if (listBoxLayers.SelectedIndex > -1 && listBoxLayers.SelectedIndex < hoFile.MAST.sectionSect2.layers.Count)
+                    if (hoFile.MAST.sectionSect2.layers[listBoxLayers.SelectedIndex].subLayer is SubLayer_PSL psl)
+                        if (listBoxAssets.SelectedIndex > -1 && listBoxAssets.SelectedIndex < psl.assets.Count)
+                        {
+                            x = psl.assets[listBoxAssets.SelectedIndex].data;
+                            TextureViewer texView = new TextureViewer();
+                            texView.ShowDialog();
+                        }
 
+        }
+        public void TurnOfTexurePreviewing()
+        {
+            texturePreviewBox.Image = null;
+        }
+        public void HideOpenButton()
+        {
+            btnOpenTextureViewer.Visible = false;
+        }
+        public void ShowOpenButton()
+        {
+            btnOpenTextureViewer.Visible = true;
+        }
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkTurnOffPreviewButton.Checked == true)
+            {
+                HideOpenButton();
+            }
+            if (chkTurnOffPreviewButton.Checked == false)
+            {
+                ShowOpenButton();
+            }
         }
     }
 }

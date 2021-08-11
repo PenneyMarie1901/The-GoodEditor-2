@@ -70,9 +70,12 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.grpByteViewerButtonContainer = new System.Windows.Forms.GroupBox();
             this.grpTextureControls = new System.Windows.Forms.GroupBox();
-            this.btnOpenTextureViewer = new System.Windows.Forms.Button();
             this.grpPreviewContainer = new System.Windows.Forms.GroupBox();
             this.texturePreviewBox = new System.Windows.Forms.PictureBox();
+            this.btnOpenTextureViewer = new System.Windows.Forms.Button();
+            this.chkTurnPreviewOff = new System.Windows.Forms.CheckBox();
+            this.grpOptionsViewer = new System.Windows.Forms.GroupBox();
+            this.chkTurnOffPreviewButton = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -83,6 +86,7 @@
             this.grpTextureControls.SuspendLayout();
             this.grpPreviewContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.texturePreviewBox)).BeginInit();
+            this.grpOptionsViewer.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -281,9 +285,9 @@
             // 
             this.groupBox3.Controls.Add(this.checkBox2);
             this.groupBox3.Controls.Add(this.checkBox1);
-            this.groupBox3.Location = new System.Drawing.Point(441, 22);
+            this.groupBox3.Location = new System.Drawing.Point(441, 25);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(200, 83);
+            this.groupBox3.Size = new System.Drawing.Size(200, 80);
             this.groupBox3.TabIndex = 51;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Misc. Options";
@@ -484,22 +488,13 @@
             // 
             this.grpTextureControls.Controls.Add(this.grpPreviewContainer);
             this.grpTextureControls.Controls.Add(this.btnOpenTextureViewer);
+            this.grpTextureControls.Controls.Add(this.grpOptionsViewer);
             this.grpTextureControls.Location = new System.Drawing.Point(672, 425);
             this.grpTextureControls.Name = "grpTextureControls";
             this.grpTextureControls.Size = new System.Drawing.Size(455, 200);
             this.grpTextureControls.TabIndex = 9;
             this.grpTextureControls.TabStop = false;
-            this.grpTextureControls.Text = "Texture Viewer Controls";
-            // 
-            // btnOpenTextureViewer
-            // 
-            this.btnOpenTextureViewer.Location = new System.Drawing.Point(214, 155);
-            this.btnOpenTextureViewer.Name = "btnOpenTextureViewer";
-            this.btnOpenTextureViewer.Size = new System.Drawing.Size(232, 39);
-            this.btnOpenTextureViewer.TabIndex = 39;
-            this.btnOpenTextureViewer.Text = "Open Previewed Texture";
-            this.btnOpenTextureViewer.UseVisualStyleBackColor = true;
-            this.btnOpenTextureViewer.Click += new System.EventHandler(this.button2_Click_2);
+            this.grpTextureControls.Text = "Texture Previewer and Viewer Controls";
             // 
             // grpPreviewContainer
             // 
@@ -517,9 +512,52 @@
             this.texturePreviewBox.Location = new System.Drawing.Point(3, 18);
             this.texturePreviewBox.Name = "texturePreviewBox";
             this.texturePreviewBox.Size = new System.Drawing.Size(194, 152);
-            this.texturePreviewBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.texturePreviewBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.texturePreviewBox.TabIndex = 0;
             this.texturePreviewBox.TabStop = false;
+            // 
+            // btnOpenTextureViewer
+            // 
+            this.btnOpenTextureViewer.Location = new System.Drawing.Point(214, 155);
+            this.btnOpenTextureViewer.Name = "btnOpenTextureViewer";
+            this.btnOpenTextureViewer.Size = new System.Drawing.Size(232, 39);
+            this.btnOpenTextureViewer.TabIndex = 39;
+            this.btnOpenTextureViewer.Text = "Open Previewed Texture";
+            this.btnOpenTextureViewer.UseVisualStyleBackColor = true;
+            this.btnOpenTextureViewer.Click += new System.EventHandler(this.button2_Click_2);
+            // 
+            // chkTurnPreviewOff
+            // 
+            this.chkTurnPreviewOff.AutoSize = true;
+            this.chkTurnPreviewOff.Location = new System.Drawing.Point(6, 101);
+            this.chkTurnPreviewOff.Name = "chkTurnPreviewOff";
+            this.chkTurnPreviewOff.Size = new System.Drawing.Size(207, 21);
+            this.chkTurnPreviewOff.TabIndex = 41;
+            this.chkTurnPreviewOff.Text = "Turn Off Texture Previewing";
+            this.chkTurnPreviewOff.UseVisualStyleBackColor = true;
+            this.chkTurnPreviewOff.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            // 
+            // grpOptionsViewer
+            // 
+            this.grpOptionsViewer.Controls.Add(this.chkTurnOffPreviewButton);
+            this.grpOptionsViewer.Controls.Add(this.chkTurnPreviewOff);
+            this.grpOptionsViewer.Location = new System.Drawing.Point(214, 21);
+            this.grpOptionsViewer.Name = "grpOptionsViewer";
+            this.grpOptionsViewer.Size = new System.Drawing.Size(232, 128);
+            this.grpOptionsViewer.TabIndex = 42;
+            this.grpOptionsViewer.TabStop = false;
+            this.grpOptionsViewer.Text = "Options";
+            // 
+            // chkTurnOffPreviewButton
+            // 
+            this.chkTurnOffPreviewButton.AutoSize = true;
+            this.chkTurnOffPreviewButton.Location = new System.Drawing.Point(6, 74);
+            this.chkTurnOffPreviewButton.Name = "chkTurnOffPreviewButton";
+            this.chkTurnOffPreviewButton.Size = new System.Drawing.Size(139, 21);
+            this.chkTurnOffPreviewButton.TabIndex = 41;
+            this.chkTurnOffPreviewButton.Text = "Hide Open Buton";
+            this.chkTurnOffPreviewButton.UseVisualStyleBackColor = true;
+            this.chkTurnOffPreviewButton.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // MainWindow
             // 
@@ -551,7 +589,10 @@
             this.grpByteViewerButtonContainer.ResumeLayout(false);
             this.grpTextureControls.ResumeLayout(false);
             this.grpPreviewContainer.ResumeLayout(false);
+            this.grpPreviewContainer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.texturePreviewBox)).EndInit();
+            this.grpOptionsViewer.ResumeLayout(false);
+            this.grpOptionsViewer.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -602,6 +643,9 @@
         private System.Windows.Forms.Button btnOpenTextureViewer;
         private System.Windows.Forms.GroupBox grpPreviewContainer;
         private System.Windows.Forms.PictureBox texturePreviewBox;
+        private System.Windows.Forms.CheckBox chkTurnPreviewOff;
+        private System.Windows.Forms.GroupBox grpOptionsViewer;
+        private System.Windows.Forms.CheckBox chkTurnOffPreviewButton;
     }
 }
 

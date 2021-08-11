@@ -89,7 +89,7 @@ namespace TheGoodEditor2.AboutAssets
             this.whatIsText.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.whatIsText.Location = new System.Drawing.Point(241, 18);
             this.whatIsText.Name = "whatIsText";
-            this.whatIsText.Size = new System.Drawing.Size(320, 39);
+            this.whatIsText.Size = new System.Drawing.Size(311, 38);
             this.whatIsText.TabIndex = 0;
             this.whatIsText.Text = "What is this asset?";
             // 

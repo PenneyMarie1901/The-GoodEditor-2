@@ -114,6 +114,11 @@
     <Reference Include="System.Collections.Immutable, Version=1.2.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Collections.Immutable.1.7.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
     </Reference>
+    <Reference Include="System.Collections.NonGeneric, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.NonGeneric.4.3.0\lib\net46\System.Collections.NonGeneric.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
@@ -169,6 +174,12 @@
     <Compile Include="AboutAssets\WhatIsFloatingCollectible.Designer.cs">
       <DependentUpon>WhatIsFloatingCollectible.cs</DependentUpon>
     </Compile>
+    <Compile Include="AboutAssets\WhatIsGenRawBlob.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutAssets\WhatIsGenRawBlob.Designer.cs">
+      <DependentUpon>WhatIsGenRawBlob.cs</DependentUpon>
+    </Compile>
     <Compile Include="AboutAssets\WhatIsPlatformWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +191,12 @@
     </Compile>
     <Compile Include="AboutAssets\WhatIsSimpleObjectWindow.Designer.cs">
       <DependentUpon>WhatIsSimpleObjectWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AboutAssets\WhatIsTextureWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutAssets\WhatIsTextureWindow.Designer.cs">
+      <DependentUpon>WhatIsTextureWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Discord\DiscordRPC.cs" />
     <Compile Include="EditorWindows\ByteViewerBox.cs">
@@ -246,11 +263,17 @@
     <EmbeddedResource Include="AboutAssets\WhatIsFloatingCollectible.resx">
       <DependentUpon>WhatIsFloatingCollectible.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AboutAssets\WhatIsGenRawBlob.resx">
+      <DependentUpon>WhatIsGenRawBlob.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AboutAssets\WhatIsPlatformWindow.resx">
       <DependentUpon>WhatIsPlatformWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AboutAssets\WhatIsSimpleObjectWindow.resx">
       <DependentUpon>WhatIsSimpleObjectWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutAssets\WhatIsTextureWindow.resx">
+      <DependentUpon>WhatIsTextureWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditorWindows\ByteViewerBox.resx">
       <DependentUpon>ByteViewerBox.cs</DependentUpon>
@@ -313,8 +336,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="WiiSharp\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,7 +1,7 @@
 ﻿
 namespace TheGoodEditor2.AboutAssets
 {
-    partial class WhatIsSimpleObjectWindow
+    partial class WhatIsGenRawBlob
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace TheGoodEditor2.AboutAssets
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WhatIsSimpleObjectWindow));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WhatIsGenRawBlob));
             this.grpAboutText = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtAboutAsset = new System.Windows.Forms.TextBox();
@@ -47,7 +47,7 @@ namespace TheGoodEditor2.AboutAssets
             this.grpAboutText.Location = new System.Drawing.Point(12, 12);
             this.grpAboutText.Name = "grpAboutText";
             this.grpAboutText.Size = new System.Drawing.Size(824, 509);
-            this.grpAboutText.TabIndex = 1;
+            this.grpAboutText.TabIndex = 5;
             this.grpAboutText.TabStop = false;
             this.grpAboutText.Text = "Details";
             // 
@@ -55,11 +55,11 @@ namespace TheGoodEditor2.AboutAssets
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(286, 112);
+            this.label2.Location = new System.Drawing.Point(242, 111);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(232, 32);
+            this.label2.Size = new System.Drawing.Size(322, 32);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Editable? - Yes!";
+            this.label2.Text = "Editable? - Somewhat.";
             // 
             // txtAboutAsset
             // 
@@ -70,39 +70,37 @@ namespace TheGoodEditor2.AboutAssets
             this.txtAboutAsset.ReadOnly = true;
             this.txtAboutAsset.Size = new System.Drawing.Size(812, 305);
             this.txtAboutAsset.TabIndex = 2;
-            this.txtAboutAsset.Text = "SimpleObjects are placeable assets which have a 3-D placement in a level. They ar" +
-    "e cuurently editable by me, the GoodEditor 2. Click on my \"Edit Selected Asset\" " +
-    "buton to edit this asset!";
+            this.txtAboutAsset.Text = resources.GetString("txtAboutAsset.Text");
             this.txtAboutAsset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(223, 68);
+            this.label1.Location = new System.Drawing.Point(141, 66);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(366, 32);
+            this.label1.Size = new System.Drawing.Size(526, 32);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Asset Type: SimpleObject";
+            this.label1.Text = "Asset Type: \"GEN_RawBlob\", Texture";
             // 
             // whatIsText
             // 
             this.whatIsText.AutoSize = true;
             this.whatIsText.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.whatIsText.Location = new System.Drawing.Point(241, 18);
+            this.whatIsText.Location = new System.Drawing.Point(253, 18);
             this.whatIsText.Name = "whatIsText";
             this.whatIsText.Size = new System.Drawing.Size(311, 38);
             this.whatIsText.TabIndex = 0;
             this.whatIsText.Text = "What is this asset?";
             // 
-            // WhatIsSimpleObjectWindow
+            // WhatIsGenRawBlob
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(848, 533);
+            this.ClientSize = new System.Drawing.Size(850, 530);
             this.Controls.Add(this.grpAboutText);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "WhatIsSimpleObjectWindow";
+            this.Name = "WhatIsGenRawBlob";
             this.Text = "What is this asset?";
             this.grpAboutText.ResumeLayout(false);
             this.grpAboutText.PerformLayout();
