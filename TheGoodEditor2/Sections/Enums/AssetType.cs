@@ -33,6 +33,7 @@
         Light_Effect_Strobe = 0xCCF2B67E,
         LoadingScreen = 0x65393854,
         Model = 0x5247BB31,
+        Mesh = 0xBDE21A8D
         MovePoint = 0x683317AB,
         ObjGenSpawnPtAsset = 0x3683588A,
         Option = 0x2570FEF5,
