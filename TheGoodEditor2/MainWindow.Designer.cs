@@ -609,9 +609,9 @@
             // 
             this.btnDumpTextures.Location = new System.Drawing.Point(6, 21);
             this.btnDumpTextures.Name = "btnDumpTextures";
-            this.btnDumpTextures.Size = new System.Drawing.Size(160, 47);
+            this.btnDumpTextures.Size = new System.Drawing.Size(258, 47);
             this.btnDumpTextures.TabIndex = 42;
-            this.btnDumpTextures.Text = "Dump All Textures";
+            this.btnDumpTextures.Text = "Dump All Textures (Experimental)";
             this.btnDumpTextures.UseVisualStyleBackColor = true;
             this.btnDumpTextures.Click += new System.EventHandler(this.btnDumpTextures_Click);
             // 
