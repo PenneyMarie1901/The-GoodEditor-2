@@ -13,7 +13,6 @@ namespace HiHoFile
         public int unk0C;
         public ulong assetID;
         public uint assetType;
-        public string assetName; // The asset's name
         public int unk1C;
         public byte[] data;
         public int absoluteDataOffset; // used only for replacement

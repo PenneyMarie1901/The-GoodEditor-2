@@ -10,10 +10,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TheGoodEditor2.EditorWindows;
 using TheGoodEditor2.AboutAssets;
+using TheGoodEditor2.EditorWindows.Randomizer;
+using TheGoodEditor2.Sections;
 using HiHoFile;
 using static HiHoFile.Extensions;
 using System.Globalization;
 using libWiiSharp;
+using System.Drawing.Imaging;
+using TheGoodEditor2.EditorWindows.TextureEditors;
 
 namespace TheGoodEditor2
 {
@@ -118,7 +122,7 @@ namespace TheGoodEditor2
         {
             if (fileName == null)
             {
-                MessageBox.Show("You have not opened a *.ho file yet, unable to save!");
+                MessageBox.Show("You don't have a ho file open, so saving would not make sense. Please open a ho file first!");
             }
             else if (File.Exists(fileName))
             {
@@ -144,6 +148,8 @@ namespace TheGoodEditor2
                                 string isWhatItem = listBoxAssets.GetItemText(listBoxAssets.SelectedItem);
                                 if (isWhatItem.Contains("BDE21A8D"))
                                 {
+
+
                                     x = psl.assets[listBoxAssets.SelectedIndex].data;
                                     byte[] untrimmed = x;
                                     byte[] trimmed = untrimmed.Skip(32).ToArray();
@@ -152,6 +158,7 @@ namespace TheGoodEditor2
 
                                     texturePreviewBox.Image = newbmp;
                                 }
+
                                 if (isWhatItem.Contains("GEN_RawBlob"))
                                 {
                                     x = psl.assets[listBoxAssets.SelectedIndex].data;
@@ -170,6 +177,7 @@ namespace TheGoodEditor2
                             }
                         }
         }
+
         public void exitTheGoodEditor2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -933,6 +941,144 @@ namespace TheGoodEditor2
             if (chkTurnOffPreviewButton.Checked == false)
             {
                 ShowOpenButton();
+            }
+        }
+
+        private void openTheRandomizerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Randomizer randomizerWindow = new Randomizer();
+            randomizerWindow.ShowDialog();
+        }
+        byte[] posXSimpleObject;
+        public void RandomizePositionXSimpleObject(object sender, EventArgs e)
+        {
+            List<byte> allSimpleObjects = new List<byte>();
+            listBoxAssets.BeginUpdate();
+            listBoxAssets.Items.Clear();
+            if (listBoxLayers.SelectedIndex > -1 && listBoxLayers.SelectedIndex < hoFile.MAST.sectionSect2.layers.Count)
+            {
+                if (hoFile.MAST.sectionSect2.layers[listBoxLayers.SelectedIndex].subLayer is SubLayer_PSL psl)
+                {
+                    foreach (var asset in psl.assets)
+                    {
+                        asset.data = x;
+                        foreach (string currentString in listBoxAssets.Items)
+                        {
+                            currentString.Contains("SimpleObject");
+                            var bytes = Encoding.Unicode.GetBytes(currentString);
+                            allSimpleObjects.AddRange(bytes);
+                        
+                            Random randomFloatPosX = new Random();
+                            var randomPosXFloatSimp = randomFloatPosX.NextDouble() * (20.5 - 1.0);
+                            float parserandomFloatPosX = float.Parse(randomPosXFloatSimp.ToString());
+                            float PosXRandomFloat = parserandomFloatPosX;
+                            float allDataPosX = float.Parse(PosXRandomFloat.ToString());
+                            posXSimpleObject = BitConverter.GetBytes(allDataPosX);
+
+                            if (BitConverter.IsLittleEndian)
+                            {
+                                Array.Reverse(posXSimpleObject);
+                            }
+                            x = allSimpleObjects.ToArray();
+                            posXSimpleObject.CopyTo(x, 0x2C);
+
+                            ReplaceInEditableArray(asset.absoluteDataOffset, x, asset.totalDataSize);
+
+                            asset.actualSize = x.Length;
+                            WriteNewSizeInEditableArray(asset.absoluteActualSizeOffset, x.Length);
+
+                            listBoxAssets_SelectedIndexChanged(sender, e);
+                        }                        
+                    }
+                }
+            }
+            listBoxAssets.EndUpdate();
+            listBoxAssets_SelectedIndexChanged(sender, e);
+        }
+
+        private void texturePreviewBox_Click(object sender, EventArgs e)
+        {
+
+        }
+        public void saveNewCustomTexture(object sender, EventArgs e)
+        {
+            ulong assetID = GetSelectedAssetID();
+
+            if (assetID != 0)
+                if (listBoxLayers.SelectedIndex > -1 && listBoxLayers.SelectedIndex < hoFile.MAST.sectionSect2.layers.Count)
+                    if (hoFile.MAST.sectionSect2.layers[listBoxLayers.SelectedIndex].subLayer is SubLayer_PSL psl)
+                        if (listBoxAssets.SelectedIndex > -1 && listBoxAssets.SelectedIndex < psl.assets.Count)
+                        {
+                            x = TextureViewer.customTextureData;
+
+
+                            psl.assets[listBoxAssets.SelectedIndex].data = x;
+                            ReplaceInEditableArray(psl.assets[listBoxAssets.SelectedIndex].absoluteDataOffset, x, psl.assets[listBoxAssets.SelectedIndex].totalDataSize);
+
+                            psl.assets[listBoxAssets.SelectedIndex].actualSize = x.Length;
+                            WriteNewSizeInEditableArray(psl.assets[listBoxAssets.SelectedIndex].absoluteActualSizeOffset, x.Length);
+
+                            listBoxAssets_SelectedIndexChanged(sender, e);
+                        }
+        }
+        public void refreshTextureViewerPreviewBox()
+        {
+            ulong assetID = GetSelectedAssetID();
+
+            if (assetID != 0)
+                if (listBoxLayers.SelectedIndex > -1 && listBoxLayers.SelectedIndex < hoFile.MAST.sectionSect2.layers.Count)
+                    if (hoFile.MAST.sectionSect2.layers[listBoxLayers.SelectedIndex].subLayer is SubLayer_PSL psl)
+                        if (listBoxAssets.SelectedIndex > -1 && listBoxAssets.SelectedIndex < psl.assets.Count)
+                        {
+                            if (listBoxAssets.SelectedIndex <= -1)
+                            {
+                                listBoxAssets.SelectedIndex = 0;
+                            }
+                            if (listBoxAssets.SelectedIndex > -1)
+                            {
+                                string isWhatItem = listBoxAssets.GetItemText(listBoxAssets.SelectedItem);
+                                if (isWhatItem.Contains("BDE21A8D"))
+                                {
+                                    x = psl.assets[listBoxAssets.SelectedIndex].data;
+                                    byte[] untrimmed = x;
+                                    byte[] trimmed = untrimmed.Skip(32).ToArray();
+                                    var bmp = TPL.Load(trimmed);
+                                    Bitmap newbmp = new Bitmap(bmp.ExtractTexture());
+
+                                    texturePreviewBox.Image = newbmp;
+                                }
+                                if (isWhatItem.Contains("GEN_RawBlob"))
+                                {
+                                    x = psl.assets[listBoxAssets.SelectedIndex].data;
+                                    byte[] untrimmed = x;
+                                    byte[] trimmed = untrimmed.Skip(32).ToArray();
+                                    var bmp = TPL.Load(trimmed);
+                                    Bitmap newbmp = new Bitmap(bmp.ExtractTexture());
+
+                                    texturePreviewBox.Image = newbmp;
+                                }
+                            }
+                        }
+        }
+
+        private void btnDumpTextures_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog folderBrowser = new FolderBrowserDialog())
+                if (folderBrowser.ShowDialog() == DialogResult.OK)
+                    hoFile.DumpTextures(folderBrowser.SelectedPath);                 
+        }
+
+        private void button2_Click_3(object sender, EventArgs e)
+        {
+            ExtraTextureOptionsWindow extraOptionsForTextures = new ExtraTextureOptionsWindow();
+            extraOptionsForTextures.ShowDialog();
+        }
+        public void setColors()
+        {
+            ColorDialog colorChooser = new ColorDialog();
+            if (colorChooser.ShowDialog() == DialogResult.OK)
+            {
+                hoFile.makeTexturesSolidColor(colorChooser.Color);
             }
         }
     }

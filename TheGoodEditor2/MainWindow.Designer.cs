@@ -40,13 +40,16 @@
             this.exportLayerListToTextFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportAssetsListToTextFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openTheSaveFileEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.randomizerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openTheRandomizerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutTheGoodEditor2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disableToolTipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listBoxLayers = new System.Windows.Forms.ListBox();
-            this.listBoxAssets = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblAssetID = new System.Windows.Forms.Label();
+            this.lblNames = new System.Windows.Forms.Label();
+            this.lblLayer = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -59,6 +62,8 @@
             this.btnAssetUp = new System.Windows.Forms.Button();
             this.btnLayerDown = new System.Windows.Forms.Button();
             this.btnLayerUp = new System.Windows.Forms.Button();
+            this.listBoxLayers = new System.Windows.Forms.ListBox();
+            this.listBoxAssets = new System.Windows.Forms.ListBox();
             this.btnSendData = new System.Windows.Forms.Button();
             this.gHelpToolTips = new System.Windows.Forms.ToolTip(this.components);
             this.grupAssetOtherTools = new System.Windows.Forms.GroupBox();
@@ -73,9 +78,11 @@
             this.grpPreviewContainer = new System.Windows.Forms.GroupBox();
             this.texturePreviewBox = new System.Windows.Forms.PictureBox();
             this.btnOpenTextureViewer = new System.Windows.Forms.Button();
-            this.chkTurnPreviewOff = new System.Windows.Forms.CheckBox();
             this.grpOptionsViewer = new System.Windows.Forms.GroupBox();
+            this.btnExtraOptionsTexture = new System.Windows.Forms.Button();
+            this.btnDumpTextures = new System.Windows.Forms.Button();
             this.chkTurnOffPreviewButton = new System.Windows.Forms.CheckBox();
+            this.chkTurnPreviewOff = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -98,7 +105,7 @@
             this.propertiesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1146, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1337, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -146,7 +153,8 @@
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exportLayerListToTextFileToolStripMenuItem,
             this.exportAssetsListToTextFileToolStripMenuItem,
-            this.openTheSaveFileEditorToolStripMenuItem});
+            this.openTheSaveFileEditorToolStripMenuItem,
+            this.randomizerToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -172,6 +180,22 @@
             this.openTheSaveFileEditorToolStripMenuItem.Text = "Open the Save File Editor...";
             this.openTheSaveFileEditorToolStripMenuItem.Visible = false;
             this.openTheSaveFileEditorToolStripMenuItem.Click += new System.EventHandler(this.openTheSaveFileEditorToolStripMenuItem_Click);
+            // 
+            // randomizerToolStripMenuItem
+            // 
+            this.randomizerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openTheRandomizerToolStripMenuItem});
+            this.randomizerToolStripMenuItem.Name = "randomizerToolStripMenuItem";
+            this.randomizerToolStripMenuItem.Size = new System.Drawing.Size(278, 26);
+            this.randomizerToolStripMenuItem.Text = "Randomizer";
+            this.randomizerToolStripMenuItem.Visible = false;
+            // 
+            // openTheRandomizerToolStripMenuItem
+            // 
+            this.openTheRandomizerToolStripMenuItem.Name = "openTheRandomizerToolStripMenuItem";
+            this.openTheRandomizerToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
+            this.openTheRandomizerToolStripMenuItem.Text = "Open The Randomizer";
+            this.openTheRandomizerToolStripMenuItem.Click += new System.EventHandler(this.openTheRandomizerToolStripMenuItem_Click);
             // 
             // propertiesToolStripMenuItem
             // 
@@ -204,32 +228,11 @@
             this.disableToolTipsToolStripMenuItem.Text = "Disable ToolTips";
             this.disableToolTipsToolStripMenuItem.Click += new System.EventHandler(this.disableToolTipsToolStripMenuItem_Click);
             // 
-            // listBoxLayers
-            // 
-            this.listBoxLayers.FormattingEnabled = true;
-            this.listBoxLayers.ItemHeight = 16;
-            this.listBoxLayers.Location = new System.Drawing.Point(8, 167);
-            this.listBoxLayers.Margin = new System.Windows.Forms.Padding(4);
-            this.listBoxLayers.Name = "listBoxLayers";
-            this.listBoxLayers.Size = new System.Drawing.Size(297, 404);
-            this.listBoxLayers.TabIndex = 2;
-            this.listBoxLayers.SelectedIndexChanged += new System.EventHandler(this.listBoxLayers_SelectedIndexChanged);
-            this.listBoxLayers.MouseHover += new System.EventHandler(this.listBoxLayers_MouseHover);
-            // 
-            // listBoxAssets
-            // 
-            this.listBoxAssets.FormattingEnabled = true;
-            this.listBoxAssets.ItemHeight = 16;
-            this.listBoxAssets.Location = new System.Drawing.Point(315, 167);
-            this.listBoxAssets.Margin = new System.Windows.Forms.Padding(4);
-            this.listBoxAssets.Name = "listBoxAssets";
-            this.listBoxAssets.Size = new System.Drawing.Size(312, 404);
-            this.listBoxAssets.TabIndex = 1;
-            this.listBoxAssets.SelectedIndexChanged += new System.EventHandler(this.listBoxAssets_SelectedIndexChanged_1);
-            this.listBoxAssets.MouseHover += new System.EventHandler(this.listBoxAssets_MouseHover);
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblAssetID);
+            this.groupBox1.Controls.Add(this.lblNames);
+            this.groupBox1.Controls.Add(this.lblLayer);
             this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.lblFineScrollLayers);
@@ -244,10 +247,37 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(648, 592);
+            this.groupBox1.Size = new System.Drawing.Size(648, 608);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Layers and Assets";
+            // 
+            // lblAssetID
+            // 
+            this.lblAssetID.AutoSize = true;
+            this.lblAssetID.Location = new System.Drawing.Point(528, 175);
+            this.lblAssetID.Name = "lblAssetID";
+            this.lblAssetID.Size = new System.Drawing.Size(56, 17);
+            this.lblAssetID.TabIndex = 55;
+            this.lblAssetID.Text = "AssetID";
+            // 
+            // lblNames
+            // 
+            this.lblNames.AutoSize = true;
+            this.lblNames.Location = new System.Drawing.Point(357, 175);
+            this.lblNames.Name = "lblNames";
+            this.lblNames.Size = new System.Drawing.Size(45, 17);
+            this.lblNames.TabIndex = 54;
+            this.lblNames.Text = "Name";
+            // 
+            // lblLayer
+            // 
+            this.lblLayer.AutoSize = true;
+            this.lblLayer.Location = new System.Drawing.Point(110, 175);
+            this.lblLayer.Name = "lblLayer";
+            this.lblLayer.Size = new System.Drawing.Size(51, 17);
+            this.lblLayer.TabIndex = 53;
+            this.lblLayer.Text = "Layers";
             // 
             // groupBox4
             // 
@@ -383,12 +413,36 @@
             this.btnLayerUp.Click += new System.EventHandler(this.btnLayerUp_Click);
             this.btnLayerUp.MouseHover += new System.EventHandler(this.btnLayerUp_MouseHover);
             // 
+            // listBoxLayers
+            // 
+            this.listBoxLayers.FormattingEnabled = true;
+            this.listBoxLayers.ItemHeight = 16;
+            this.listBoxLayers.Location = new System.Drawing.Point(8, 196);
+            this.listBoxLayers.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxLayers.Name = "listBoxLayers";
+            this.listBoxLayers.Size = new System.Drawing.Size(297, 404);
+            this.listBoxLayers.TabIndex = 2;
+            this.listBoxLayers.SelectedIndexChanged += new System.EventHandler(this.listBoxLayers_SelectedIndexChanged);
+            this.listBoxLayers.MouseHover += new System.EventHandler(this.listBoxLayers_MouseHover);
+            // 
+            // listBoxAssets
+            // 
+            this.listBoxAssets.FormattingEnabled = true;
+            this.listBoxAssets.ItemHeight = 16;
+            this.listBoxAssets.Location = new System.Drawing.Point(313, 196);
+            this.listBoxAssets.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxAssets.Name = "listBoxAssets";
+            this.listBoxAssets.Size = new System.Drawing.Size(312, 404);
+            this.listBoxAssets.TabIndex = 1;
+            this.listBoxAssets.SelectedIndexChanged += new System.EventHandler(this.listBoxAssets_SelectedIndexChanged_1);
+            this.listBoxAssets.MouseHover += new System.EventHandler(this.listBoxAssets_MouseHover);
+            // 
             // btnSendData
             // 
             this.btnSendData.Location = new System.Drawing.Point(8, 187);
             this.btnSendData.Margin = new System.Windows.Forms.Padding(4);
             this.btnSendData.Name = "btnSendData";
-            this.btnSendData.Size = new System.Drawing.Size(439, 28);
+            this.btnSendData.Size = new System.Drawing.Size(640, 28);
             this.btnSendData.TabIndex = 37;
             this.btnSendData.Text = "Edit Selected Asset";
             this.btnSendData.UseVisualStyleBackColor = true;
@@ -404,7 +458,7 @@
             this.grupAssetOtherTools.Margin = new System.Windows.Forms.Padding(4);
             this.grupAssetOtherTools.Name = "grupAssetOtherTools";
             this.grupAssetOtherTools.Padding = new System.Windows.Forms.Padding(4);
-            this.grupAssetOtherTools.Size = new System.Drawing.Size(455, 233);
+            this.grupAssetOtherTools.Size = new System.Drawing.Size(656, 233);
             this.grupAssetOtherTools.TabIndex = 6;
             this.grupAssetOtherTools.TabStop = false;
             this.grupAssetOtherTools.Text = "Basic Asset Tools";
@@ -415,7 +469,7 @@
             this.buttonExtractAll.Location = new System.Drawing.Point(8, 101);
             this.buttonExtractAll.Margin = new System.Windows.Forms.Padding(4);
             this.buttonExtractAll.Name = "buttonExtractAll";
-            this.buttonExtractAll.Size = new System.Drawing.Size(439, 28);
+            this.buttonExtractAll.Size = new System.Drawing.Size(640, 28);
             this.buttonExtractAll.TabIndex = 7;
             this.buttonExtractAll.Text = "Extract All Assets";
             this.buttonExtractAll.UseVisualStyleBackColor = true;
@@ -426,7 +480,7 @@
             this.buttonExtract.Location = new System.Drawing.Point(8, 30);
             this.buttonExtract.Margin = new System.Windows.Forms.Padding(4);
             this.buttonExtract.Name = "buttonExtract";
-            this.buttonExtract.Size = new System.Drawing.Size(439, 28);
+            this.buttonExtract.Size = new System.Drawing.Size(640, 28);
             this.buttonExtract.TabIndex = 5;
             this.buttonExtract.Text = "Extract Selected Asset";
             this.buttonExtract.UseVisualStyleBackColor = true;
@@ -437,7 +491,7 @@
             this.buttonReplace.Location = new System.Drawing.Point(8, 65);
             this.buttonReplace.Margin = new System.Windows.Forms.Padding(4);
             this.buttonReplace.Name = "buttonReplace";
-            this.buttonReplace.Size = new System.Drawing.Size(439, 28);
+            this.buttonReplace.Size = new System.Drawing.Size(640, 28);
             this.buttonReplace.TabIndex = 6;
             this.buttonReplace.Text = "Replace Selected Asset";
             this.buttonReplace.UseVisualStyleBackColor = true;
@@ -447,7 +501,7 @@
             // 
             this.btnOpenByteViewer.Location = new System.Drawing.Point(8, 21);
             this.btnOpenByteViewer.Name = "btnOpenByteViewer";
-            this.btnOpenByteViewer.Size = new System.Drawing.Size(440, 39);
+            this.btnOpenByteViewer.Size = new System.Drawing.Size(641, 39);
             this.btnOpenByteViewer.TabIndex = 38;
             this.btnOpenByteViewer.Text = "Open the Byte Viewer";
             this.btnOpenByteViewer.UseVisualStyleBackColor = true;
@@ -458,7 +512,7 @@
             this.button1.Location = new System.Drawing.Point(7, 22);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(439, 35);
+            this.button1.Size = new System.Drawing.Size(640, 35);
             this.button1.TabIndex = 38;
             this.button1.Text = "What\'s this asset type?";
             this.button1.UseVisualStyleBackColor = true;
@@ -469,7 +523,7 @@
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Location = new System.Drawing.Point(672, 274);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(455, 68);
+            this.groupBox2.Size = new System.Drawing.Size(656, 68);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Asset Help";
@@ -479,7 +533,7 @@
             this.grpByteViewerButtonContainer.Controls.Add(this.btnOpenByteViewer);
             this.grpByteViewerButtonContainer.Location = new System.Drawing.Point(672, 348);
             this.grpByteViewerButtonContainer.Name = "grpByteViewerButtonContainer";
-            this.grpByteViewerButtonContainer.Size = new System.Drawing.Size(455, 71);
+            this.grpByteViewerButtonContainer.Size = new System.Drawing.Size(656, 71);
             this.grpByteViewerButtonContainer.TabIndex = 8;
             this.grpByteViewerButtonContainer.TabStop = false;
             this.grpByteViewerButtonContainer.Text = "Byte Viewer Controls";
@@ -491,7 +545,7 @@
             this.grpTextureControls.Controls.Add(this.grpOptionsViewer);
             this.grpTextureControls.Location = new System.Drawing.Point(672, 425);
             this.grpTextureControls.Name = "grpTextureControls";
-            this.grpTextureControls.Size = new System.Drawing.Size(455, 200);
+            this.grpTextureControls.Size = new System.Drawing.Size(656, 216);
             this.grpTextureControls.TabIndex = 9;
             this.grpTextureControls.TabStop = false;
             this.grpTextureControls.Text = "Texture Previewer and Viewer Controls";
@@ -515,38 +569,51 @@
             this.texturePreviewBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.texturePreviewBox.TabIndex = 0;
             this.texturePreviewBox.TabStop = false;
+            this.texturePreviewBox.Click += new System.EventHandler(this.texturePreviewBox_Click);
             // 
             // btnOpenTextureViewer
             // 
             this.btnOpenTextureViewer.Location = new System.Drawing.Point(214, 155);
             this.btnOpenTextureViewer.Name = "btnOpenTextureViewer";
-            this.btnOpenTextureViewer.Size = new System.Drawing.Size(232, 39);
+            this.btnOpenTextureViewer.Size = new System.Drawing.Size(436, 39);
             this.btnOpenTextureViewer.TabIndex = 39;
             this.btnOpenTextureViewer.Text = "Open Previewed Texture";
             this.btnOpenTextureViewer.UseVisualStyleBackColor = true;
             this.btnOpenTextureViewer.Click += new System.EventHandler(this.button2_Click_2);
             // 
-            // chkTurnPreviewOff
-            // 
-            this.chkTurnPreviewOff.AutoSize = true;
-            this.chkTurnPreviewOff.Location = new System.Drawing.Point(6, 101);
-            this.chkTurnPreviewOff.Name = "chkTurnPreviewOff";
-            this.chkTurnPreviewOff.Size = new System.Drawing.Size(207, 21);
-            this.chkTurnPreviewOff.TabIndex = 41;
-            this.chkTurnPreviewOff.Text = "Turn Off Texture Previewing";
-            this.chkTurnPreviewOff.UseVisualStyleBackColor = true;
-            this.chkTurnPreviewOff.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
-            // 
             // grpOptionsViewer
             // 
+            this.grpOptionsViewer.Controls.Add(this.btnExtraOptionsTexture);
+            this.grpOptionsViewer.Controls.Add(this.btnDumpTextures);
             this.grpOptionsViewer.Controls.Add(this.chkTurnOffPreviewButton);
             this.grpOptionsViewer.Controls.Add(this.chkTurnPreviewOff);
             this.grpOptionsViewer.Location = new System.Drawing.Point(214, 21);
             this.grpOptionsViewer.Name = "grpOptionsViewer";
-            this.grpOptionsViewer.Size = new System.Drawing.Size(232, 128);
+            this.grpOptionsViewer.Size = new System.Drawing.Size(436, 128);
             this.grpOptionsViewer.TabIndex = 42;
             this.grpOptionsViewer.TabStop = false;
             this.grpOptionsViewer.Text = "Options";
+            // 
+            // btnExtraOptionsTexture
+            // 
+            this.btnExtraOptionsTexture.Location = new System.Drawing.Point(270, 21);
+            this.btnExtraOptionsTexture.Name = "btnExtraOptionsTexture";
+            this.btnExtraOptionsTexture.Size = new System.Drawing.Size(160, 47);
+            this.btnExtraOptionsTexture.TabIndex = 43;
+            this.btnExtraOptionsTexture.Text = "Extra Texture Options";
+            this.btnExtraOptionsTexture.UseVisualStyleBackColor = true;
+            this.btnExtraOptionsTexture.Visible = false;
+            this.btnExtraOptionsTexture.Click += new System.EventHandler(this.button2_Click_3);
+            // 
+            // btnDumpTextures
+            // 
+            this.btnDumpTextures.Location = new System.Drawing.Point(6, 21);
+            this.btnDumpTextures.Name = "btnDumpTextures";
+            this.btnDumpTextures.Size = new System.Drawing.Size(160, 47);
+            this.btnDumpTextures.TabIndex = 42;
+            this.btnDumpTextures.Text = "Dump All Textures";
+            this.btnDumpTextures.UseVisualStyleBackColor = true;
+            this.btnDumpTextures.Click += new System.EventHandler(this.btnDumpTextures_Click);
             // 
             // chkTurnOffPreviewButton
             // 
@@ -559,11 +626,22 @@
             this.chkTurnOffPreviewButton.UseVisualStyleBackColor = true;
             this.chkTurnOffPreviewButton.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
+            // chkTurnPreviewOff
+            // 
+            this.chkTurnPreviewOff.AutoSize = true;
+            this.chkTurnPreviewOff.Location = new System.Drawing.Point(6, 101);
+            this.chkTurnPreviewOff.Name = "chkTurnPreviewOff";
+            this.chkTurnPreviewOff.Size = new System.Drawing.Size(207, 21);
+            this.chkTurnPreviewOff.TabIndex = 41;
+            this.chkTurnPreviewOff.Text = "Turn Off Texture Previewing";
+            this.chkTurnPreviewOff.UseVisualStyleBackColor = true;
+            this.chkTurnPreviewOff.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1146, 645);
+            this.ClientSize = new System.Drawing.Size(1337, 645);
             this.Controls.Add(this.grpTextureControls);
             this.Controls.Add(this.grpByteViewerButtonContainer);
             this.Controls.Add(this.groupBox2);
@@ -611,18 +689,12 @@
         private System.Windows.Forms.ToolStripMenuItem propertiesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutTheGoodEditor2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ListBox listBoxLayers;
-        private System.Windows.Forms.ListBox listBoxAssets;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button btnSendData;
         private System.Windows.Forms.ToolStripMenuItem saveHoParcelAsToolStripMenuItem;
-        private System.Windows.Forms.Button btnAssetDown;
-        private System.Windows.Forms.Button btnAssetUp;
-        private System.Windows.Forms.Button btnLayerDown;
-        private System.Windows.Forms.Button btnLayerUp;
         private System.Windows.Forms.ToolStripMenuItem disableToolTipsToolStripMenuItem;
         private System.Windows.Forms.ToolTip gHelpToolTips;
         private System.Windows.Forms.CheckBox checkBox2;
@@ -632,8 +704,6 @@
         private System.Windows.Forms.Button buttonExtract;
         private System.Windows.Forms.Button buttonReplace;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label lblFineScrollLayers;
-        private System.Windows.Forms.Label lblFineScroll;
         private System.Windows.Forms.Button btnOpenByteViewer;
         private System.Windows.Forms.GroupBox grpByteViewerButtonContainer;
         private System.Windows.Forms.GroupBox groupBox4;
@@ -646,6 +716,21 @@
         private System.Windows.Forms.CheckBox chkTurnPreviewOff;
         private System.Windows.Forms.GroupBox grpOptionsViewer;
         private System.Windows.Forms.CheckBox chkTurnOffPreviewButton;
+        private System.Windows.Forms.ToolStripMenuItem randomizerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openTheRandomizerToolStripMenuItem;
+        private System.Windows.Forms.Label lblAssetID;
+        private System.Windows.Forms.Label lblNames;
+        private System.Windows.Forms.Label lblLayer;
+        private System.Windows.Forms.Label lblFineScrollLayers;
+        private System.Windows.Forms.Label lblFineScroll;
+        private System.Windows.Forms.Button btnAssetDown;
+        private System.Windows.Forms.Button btnAssetUp;
+        private System.Windows.Forms.Button btnLayerDown;
+        private System.Windows.Forms.Button btnLayerUp;
+        private System.Windows.Forms.ListBox listBoxLayers;
+        private System.Windows.Forms.ListBox listBoxAssets;
+        private System.Windows.Forms.Button btnDumpTextures;
+        private System.Windows.Forms.Button btnExtraOptionsTexture;
     }
 }
 

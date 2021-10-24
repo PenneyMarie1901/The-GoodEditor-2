@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using static HiHoFile.Extensions;
+using libWiiSharp;
+using System.Drawing.Imaging;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Text;
+using TheGoodEditor2;
 
 namespace HiHoFile
 {
@@ -17,7 +23,7 @@ namespace HiHoFile
 
             HEL = new Section_HEL(binaryReader);
             MAST = new Section_MAST(binaryReader);
-            
+
             binaryReader.Close();
         }
 
@@ -36,7 +42,7 @@ namespace HiHoFile
             throw new NotImplementedException();
 
             //Directory.CreateDirectory(unpackFolder);
-            
+
             //string fileName = Path.Combine(unpackFolder, "Settings.ini");
 
             //StreamWriter INIWriter = new StreamWriter(new FileStream(fileName, FileMode.Create));
@@ -134,12 +140,12 @@ namespace HiHoFile
             //        SendMessage("Error: Unknown game.");
             //        break;
             //}
-            
+
             //HipSerializer serializer = new HipSerializer()
             //{
             //    currentGame = currentGame
             //};
-            
+
             //foreach (HoSection i in hipFile)
             //{
             //    if (i is Section_PACK PACK)
@@ -235,7 +241,98 @@ namespace HiHoFile
                         File.WriteAllBytes(Path.Combine(directoryToUnpack, assetFileName), asset.data);
                     }
         }
+        private string getNextFileName(string fileName)
+        {
+            string extension = Path.GetExtension(fileName);
 
+            int i = 0;
+            while (File.Exists(fileName))
+            {
+                if (i == 0)
+                    fileName = fileName.Replace(extension, "(" + ++i + ")" + extension);
+                else
+                    fileName = fileName.Replace("(" + i + ")" + extension, "(" + ++i + ")" + extension);
+            }
+
+            return fileName;
+        }
+        public void DumpTextures(string dumpFolder)
+        {
+            string directoryToUnpack = Path.Combine(dumpFolder, "Extracted Texture Files");
+            foreach (var layer in MAST.sectionSect2.layers)
+                if (layer.subLayer is SubLayer_PSL psl)
+                    foreach (var asset in psl.assets)
+                    {
+                        string convertedStr = BitConverter.ToString(asset.data).Replace("-", " ");
+                        if (convertedStr.Contains("00 00 00 01 3F 80 00 00 00 02 00 00 78 C8 74 06 EE 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 20 AF 30 00 00 00 02 00 00 00 0C 00 00 00 1C"))
+                        {
+
+                            byte[] untrimmed = asset.data;
+                            byte[] trimmed = untrimmed.Skip(32).ToArray();
+                            var bmp = TPL.Load(trimmed);
+                            Bitmap newbmp = new Bitmap(bmp.ExtractTexture());
+                            string type;
+                            if (Enum.IsDefined(typeof(AssetTypeHashed), asset.assetType))
+                                type = ((AssetTypeHashed)asset.assetType).ToString();
+                            else
+                                type = asset.assetType.ToString("X8");
+
+                            string name = $"[{type}] [{asset.assetID.ToString("X16")}]";
+                            if (!Directory.Exists(directoryToUnpack))
+                                Directory.CreateDirectory(directoryToUnpack);
+                            newbmp.Save(Path.Combine(directoryToUnpack, name) + ".png", ImageFormat.Png);
+                            if (File.Exists(dumpFolder))
+                            {
+                                getNextFileName(name);
+                            }
+                        }
+                    }
+        }
+        public static byte[] customTextureData;
+        public void makeTexturesSolidColor(Color colorChooser)
+        {
+            foreach (var layer in MAST.sectionSect2.layers)
+                if (layer.subLayer is SubLayer_PSL psl)
+                    foreach (var asset in psl.assets)
+                    {
+                        string convertedStr = BitConverter.ToString(asset.data).Replace("-", " ");
+                        if (convertedStr.Contains("00 00 00 01 3F 80 00 00 00 02 00 00 78 C8 74 06 EE 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 20 AF 30 00 00 00 02 00 00 00 0C 00 00 00 1C"))
+                        {
+                            int Width = 64;
+                            int Height = 64;
+                            Bitmap newBmp = new Bitmap(Width, Height);
+                            Graphics graphics = Graphics.FromImage(newBmp);
+
+                            Brush brush = new SolidBrush(colorChooser);
+
+                            graphics.FillRectangle(brush, new System.Drawing.Rectangle(0, 0, newBmp.Width, newBmp.Height));
+                            Bitmap newTextureFile = new Bitmap(newBmp, 64, 64);
+                            var newTPLTEMP = TPL.FromImage(newTextureFile, TPL_TextureFormat.RGB565);
+                            byte[] finalNewTexture = newTPLTEMP.ToByteArray();
+
+                            string extraHeaderData32Bytes = "00 00 00 01 3F 80 00 00 00 02 00 00 78 C8 74 06 EE 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00";
+                            byte[] extraHeaderData = extraHeaderData32Bytes
+                              .Split(' ')                               // Split into items 
+                              .Select(item => Convert.ToByte(item, 16)) // Convert each item into byte
+                              .ToArray();
+                            List<byte> list = new List<byte>();
+                            list.AddRange(extraHeaderData);
+                            list.AddRange(finalNewTexture);
+
+                            byte[] ActualFinalTexture = list.ToArray();
+                            customTextureData = ActualFinalTexture;
+
+                            MainWindow form = Application.OpenForms.OfType<MainWindow>().FirstOrDefault();
+                            if (form != null)
+                            {
+                                form.ReplaceInEditableArray(asset.absoluteDataOffset, customTextureData, asset.totalDataSize);
+
+                                asset.actualSize = customTextureData.Length;
+                                form.WriteNewSizeInEditableArray(asset.absoluteActualSizeOffset, customTextureData.Length);
+                            }
+                        }
+                    }
+        }
         private static readonly char v1s = ';';
 
         public static HoFile FromIni(string INIFile)
@@ -346,4 +443,5 @@ namespace HiHoFile
         //    return new HoSection[] { HIPA, PACK, DICT, STRM };
         //}
     }
+
 }

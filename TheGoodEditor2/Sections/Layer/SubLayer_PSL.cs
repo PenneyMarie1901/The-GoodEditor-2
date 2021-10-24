@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using TheGoodEditor2.Sections;
 
 namespace HiHoFile
 {
@@ -7,7 +8,8 @@ namespace HiHoFile
     {
         AssetList = 0,
         AssetData = 1,
-        Padding = 2
+        AssetName = 2,
+        Padding = 3
     }
 
     public class PSLSection
